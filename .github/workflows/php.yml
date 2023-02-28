@@ -36,7 +36,7 @@ jobs:
         run: | 
           sudo apt-get update
           sudo apt-get install -y chromium-chromedriver \
-          default-jre
+          openjdk-8-jdk
 
       - name: Download selenium driver
         run: wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar

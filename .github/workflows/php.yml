@@ -34,8 +34,8 @@ jobs:
 
     - name: Run test suite
       run: |
-        apt update &&
-        apt install chromium \
+        apt-get update &&
+        apt-get install chromium \
         chromium-chromedriver \
         openjdk10-jre &&
         wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar &&

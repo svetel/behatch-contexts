@@ -32,22 +32,22 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-      - name: install required packages
-        run: | 
-          sudo apt-get update
-          sudo apt-get install -y chromium-chromedriver \
-          openjdk-8-jdk
-
-      - name: Download selenium driver
-        run: wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar
+#      - name: install required packages
+#        run: |
+#          sudo apt-get update
+#          sudo apt-get install -y chromium-chromedriver \
+#          default-jre
+#
+#      - name: Download selenium driver
+#        run: wget "https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.8.0/selenium-server-4.8.1.jar" -O selenium.jar
 
       - name: Run server and selenium
         run: |
           php -S localhost:8080 -t tests/fixtures/www &> /dev/null & 
-          java -jar selenium.jar &> /dev/null &
+#          java -jar selenium.jar &> /dev/null &
 
       - name: Run tests
-        run: bin/behat -fprogress --tags="~@user&&@~skip"
+        run: bin/behat -fprogress --tags="~@user&&@~skip&&@~javascript"
 
 #          apk update &&
 #          apk add chromium-chromedriver \

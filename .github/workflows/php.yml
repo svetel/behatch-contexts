@@ -12,7 +12,7 @@ permissions:
 jobs:
   build:
 
-    runs-on: php:8.1-fpm-alpine3.16
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -34,8 +34,8 @@ jobs:
 
     - name: Run test suite
       run: |
-        apk update &&
-        apk add chromium \
+        apt update &&
+        apt install chromium \
         chromium-chromedriver \
         openjdk10-jre &&
         wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar &&

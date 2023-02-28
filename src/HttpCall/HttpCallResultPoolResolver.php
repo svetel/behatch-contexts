@@ -6,7 +6,7 @@ use Behat\Behat\Context\Argument\ArgumentResolver;
 
 class HttpCallResultPoolResolver implements ArgumentResolver
 {
-    private $dependencies;
+    private array $dependencies;
 
     public function __construct(/* ... */)
     {
@@ -24,10 +24,10 @@ class HttpCallResultPoolResolver implements ArgumentResolver
             $parameters = $constructor->getParameters();
             foreach ($parameters as $parameter) {
                 if (
-                    null !== $parameter->getClass()
-                    && isset($this->dependencies[$parameter->getClass()->name])
+                    null !== $parameter->getType()
+                    && isset($this->dependencies[$parameter->getType()->getName()])
                 ) {
-                    $arguments[$parameter->name] = $this->dependencies[$parameter->getClass()->name];
+                    $arguments[$parameter->name] = $this->dependencies[$parameter->getType()->getName()];
                 }
             }
         }

@@ -1,12 +1,12 @@
 {
-    "name": "behatch/contexts",
+    "name": "svetel/behatch-contexts",
     "description": "Behatch contexts",
     "keywords": ["BDD", "Behat", "Symfony2", "Context"],
     "type": "library",
     "license": "beerware",
-
+    "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5",
+        "php": ">=8.1",
         "behat/behat": "^3.0.13",
         "friends-of-behat/mink-extension": "^2.3.1",
         "justinrainbow/json-schema": "^5.0",

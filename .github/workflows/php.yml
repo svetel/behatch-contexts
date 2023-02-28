@@ -41,7 +41,7 @@ jobs:
 #      - name: Download selenium driver
 #        run: wget "https://github.com/SeleniumHQ/selenium/releases/download/selenium-4.8.0/selenium-server-4.8.1.jar" -O selenium.jar
 
-      - name: Run server and selenium
+      - name: Run server
         run: |
           php -S localhost:8080 -t tests/fixtures/www &> /dev/null & 
 #          java -jar selenium.jar &> /dev/null &
@@ -56,3 +56,4 @@ jobs:
 #          php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
 #          java -jar selenium.jar &> /dev/null &
 #          bin/behat -fprogress --tags="~@user&&@~skip"
+# Works great with openjdk10-jre

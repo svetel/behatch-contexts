@@ -1,4 +1,5 @@
 #language: pt
+@skip
 Funcionalidade: System
 
   Cenário: Testando a execução

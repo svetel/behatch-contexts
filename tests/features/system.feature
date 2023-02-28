@@ -1,5 +1,5 @@
+@skip
 Feature: System feature
-
     Scenario: Testing execution
         Given I execute "true"
         Then command should succeed

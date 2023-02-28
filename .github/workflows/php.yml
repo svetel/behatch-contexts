@@ -36,9 +36,8 @@ jobs:
       run: |
         sudo apt-get update &&
         sudo apt-get install -y chromium-chromedriver \
-        default-jre  &&
-        wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar
-#        &&
-#        php -S localhost:8080 -t tests/fixtures/www &> /dev/null &
-#        java -jar selenium.jar &> /dev/null &
-#        bin/behat -fprogress --tags="~@user&&@~skip"
+        default-jre && \
+        wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar && \
+        php -S localhost:8080 -t tests/fixtures/www &> /dev/null & \
+        java -jar selenium.jar &> /dev/null & \
+        bin/behat -fprogress --tags="~@user&&@~skip"

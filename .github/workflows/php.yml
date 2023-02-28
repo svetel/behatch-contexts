@@ -32,16 +32,18 @@ jobs:
       - name: Install dependencies
         run: composer install --prefer-dist --no-progress
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Run test suite
         run: |
-          sudo apt-get update
+          sudo apt-get update &&
           sudo apt-get install -y chromium-chromedriver \
           default-jre && \
           wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar && \
-          php -S localhost:8080 -t tests/fixtures/www &> /dev/null & \
-          java -jar selenium.jar &> /dev/null & \
+          php -S localhost:8080 -t tests/fixtures/www &> /dev/null & java -jar selenium.jar &> /dev/null & \
           bin/behat -fprogress --tags="~@user&&@~skip"
+          
+#          apk update &&
+#          apk add chromium-chromedriver \
+#          openjdk10-jre && \
+#          wget "https://selenium-release.storage.googleapis.com/3.9/selenium-server-standalone-3.9.1.jar" -O selenium.jar && \
+#          php -S localhost:8080 -t tests/fixtures/www &> /dev/null & java -jar selenium.jar &> /dev/null & \
+#          bin/behat -fprogress --tags="~@user&&@~skip"

@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  php-fpm:
+    container_name: ${PHP_CONTAINER_NAME}
+    build:
+      context: .
+      dockerfile: php-fpm/Dockerfile
+    hostname: php-fpm
+    environment:
+      SSH_AUTH_SOCK: /ssh-agent
+      XDG_CACHE_HOME: "/code/var/cache"
+      XDG_DATA_DIR: "/code/var/cache"
+    volumes:
+      - ../:/code
+      - $SSH_AUTH_SOCK:/ssh-agent

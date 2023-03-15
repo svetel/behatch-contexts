@@ -32,7 +32,7 @@ This extension requires:
 2. Require the package with Composer:
 
 ```
-$ composer require --dev behatch/contexts
+$ composer require --dev svetel/behatch-contexts
 ```
 
 3. Activate extension by specifying its class in your `behat.yml`:

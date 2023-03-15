@@ -2,8 +2,20 @@ Behatch contexts
 ================
 
 [![Build status](https://github.com/svetel/behatch-contexts/actions/workflows/php.yml/badge.svg?branch=master)](https://github.com/svetel/behatch-contexts/actions/workflows/php.yml)
-
+[![StandWithUkraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md)
+[![Stand With Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner2-direct.svg)](https://vshymanskyy.github.io/StandWithUkraine/)
 Behatch contexts provide most common Behat tests.
+
+This project forked from [Behatch/contexts](https://github.com/Behatch/contexts)
+
+- Added support php 8.1
+- Fixed deprecations
+- Fixed tests for all tags, except:
+  - @user
+  - @skip
+  - @javascript
+
+Welcome to contribute
 
 Installation
 ------------
@@ -33,7 +45,7 @@ default:
         Behatch\Extension: ~
 ```
 
-### Project bootstraping
+### Project bootstrapping
 
 1. Download the Behatch skeleton with composer:
 
@@ -95,8 +107,3 @@ default:
                 - behatch:context:debug:
                     screenshotDir: "var"
 ```
-
-Translation
------------
-
-[![See more information on Transifex.com](https://www.transifex.com/projects/p/behatch-contexts/resource/enxliff/chart/image_png)](https://www.transifex.com/projects/p/behatch-contexts/)

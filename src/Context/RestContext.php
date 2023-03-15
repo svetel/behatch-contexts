@@ -12,7 +12,7 @@ class RestContext extends BaseContext
     /**
      * @var Request
      */
-    protected $request;
+    protected Request $request;
 
     public function __construct(Request $request)
     {
@@ -31,7 +31,7 @@ class RestContext extends BaseContext
             $this->locatePath($url),
             [],
             $files,
-            $body !== null ? $body->getRaw() : null
+            $body?->getRaw()
         );
     }
 

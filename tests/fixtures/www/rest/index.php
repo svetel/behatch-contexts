@@ -18,9 +18,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT' && !empty($body)) {
 You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
 
 <?php print sizeof($_SERVER); ?> header(s) received.
-<?php foreach($_SERVER as $key => $value): ?>
-  <br /><?php print $key ?> : <?php print $value; ?>
-<?php endforeach; ?>
+<?php
+foreach ($_SERVER as $key => $value) {
+    if (!is_array($value)) {
+        ?>
+        <br/><?php
+        print $key ?> : <?php
+        print $value; ?>
+        <?php
+    }
+}
+?>
 
 <?php if(sizeof($_REQUEST) == 0): ?>
   <br />No parameter received.
@@ -30,7 +38,6 @@ You have sent a <?php print $_SERVER['REQUEST_METHOD']; ?> request.
     <br /><?php print $key ?> : <?php print $value; ?>
   <?php endforeach; ?>
 <?php endif; ?>
-
 <?php if(sizeof($_FILES) == 0): ?>
   <br />No files received.
 <?php else: ?>

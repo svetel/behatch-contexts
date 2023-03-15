@@ -55,14 +55,16 @@ class DebugContext extends BaseContext
 
         $this->displayProfilerLink();
 
-        $suiteName      = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
-        $featureName    = urlencode(str_replace(' ', '_', $scope->getFeature()->getTitle()));
+        $suiteName = urlencode(str_replace(' ', '_', $scope->getSuite()->getName()));
+        $featureTitle = $scope->getFeature()->getTitle() ?: '';
+        $featureName = urlencode(str_replace(' ', '_', $featureTitle));
 
         if ($this->getBackground($scope)) {
-            $scenarioName   = 'background';
+            $scenarioName = 'background';
         } else {
-            $scenario       = $this->getScenario($scope);
-            $scenarioName   = urlencode(str_replace(' ', '_', $scenario->getTitle()));
+            $scenario = $this->getScenario($scope);
+            $scenarioTitle = $scenario->getTitle() ?: '';
+            $scenarioName = urlencode(str_replace(' ', '_', $scenarioTitle));
         }
 
         $filename = sprintf('fail_%s_%s_%s_%s.png', time(), $suiteName, $featureName, $scenarioName);
@@ -108,7 +110,7 @@ class DebugContext extends BaseContext
     private function getBackground(AfterStepScope $scope)
     {
         $background = $scope->getFeature()->getBackground();
-        if(!$background){
+        if (!$background) {
             return false;
         }
         $stepLinesInBackground = array_map(

@@ -1,0 +1,4 @@
+%:
+	@:
+
+args=$(filter-out $@,$(MAKECMDGOALS))

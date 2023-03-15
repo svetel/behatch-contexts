@@ -4,13 +4,15 @@ namespace Behatch\HttpCall\Request;
 
 use Behat\Mink\Driver\Goutte\Client as GoutteClient;
 use Behat\Mink\Mink;
-use Symfony\Component\BrowserKit\Client as BrowserKitClient;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\BrowserKit\AbstractBrowser;
 
 class BrowserKit
 {
-    protected $mink;
+    protected Mink $mink;
 
+    /**
+     * @param Mink $mink
+     */
     public function __construct(Mink $mink)
     {
         $this->mink = $mink;
@@ -42,6 +44,7 @@ class BrowserKit
 
     protected function getRequest()
     {
+        /** @var AbstractBrowser $client */
         $client = $this->mink->getSession()->getDriver()->getClient();
         // BC layer for BrowserKit 2.2.x and older
         if (method_exists($client, 'getInternalRequest')) {
@@ -49,22 +52,27 @@ class BrowserKit
         } else {
             $request = $client->getRequest();
         }
+
         return $request;
     }
 
-    public function getContent()
+    /**
+     * @return string
+     */
+    public function getContent(): string
     {
         return $this->mink->getSession()->getPage()->getContent();
     }
 
     public function send($method, $url, $parameters = [], $files = [], $content = null, $headers = [])
     {
-        foreach ($files as $originalName => &$file) {
+        foreach ($files as &$file) {
             if (is_string($file)) {
-                $file = new UploadedFile($file, $originalName);
+                $file = ['tmp_name' => $file, 'name' => basename($file)];
             }
         }
 
+        /** @var AbstractBrowser $client */
         $client = $this->mink->getSession()->getDriver()->getClient();
 
         $client->followRedirects(false);
@@ -90,7 +98,7 @@ class BrowserKit
 
             // CONTENT_* are not prefixed with HTTP_ in PHP when building $_SERVER
             if (!isset($contentHeaders[$name])) {
-                $name = 'HTTP_' . $name;
+                $name = 'HTTP_'.$name;
             }
             /* taken from Behat\Mink\Driver\BrowserKitDriver::setRequestHeader */
 
@@ -98,7 +106,7 @@ class BrowserKit
         }
     }
 
-    public function getHttpHeaders()
+    public function getHttpHeaders(): array
     {
         return array_change_key_case(
             $this->mink->getSession()->getResponseHeaders(),
@@ -128,12 +136,13 @@ class BrowserKit
                 "The header '$name' doesn't exist"
             );
         }
+
         return $value;
     }
 
-    protected function resetHttpHeaders()
+    protected function resetHttpHeaders(): void
     {
-        /** @var GoutteClient|BrowserKitClient $client */
+        /** @var GoutteClient|AbstractBrowser $client */
         $client = $this->mink->getSession()->getDriver()->getClient();
 
         $client->setServerParameters([]);

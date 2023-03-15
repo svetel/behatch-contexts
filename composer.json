@@ -34,7 +34,7 @@
 
     "replace": {
         "sanpi/behatch-contexts": "self.version",
-        "behatch/contexts": "self.version"
+        "behatch/contexts": "3.*"
     },
 
     "extra": {

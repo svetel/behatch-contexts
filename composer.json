@@ -1,7 +1,7 @@
 {
     "name": "svetel/behatch-contexts",
-    "description": "Behatch contexts",
-    "keywords": ["BDD", "Behat", "Symfony2", "Context"],
+    "description": "Revived abandoned \"Behatch contexts\".",
+    "keywords": ["BDD", "Behat", "Symfony", "Context"],
     "type": "library",
     "license": "beerware",
     "minimum-stability": "dev",
@@ -10,9 +10,9 @@
         "behat/behat": "^3.12",
         "friends-of-behat/mink-extension": "^2.7",
         "justinrainbow/json-schema": "^5.2",
-        "symfony/property-access": "^2.3|^3.0|^4.0|^5.0|^6.0",
-        "symfony/http-foundation": "^2.3|^3.0|^4.0|^5.0|^6.0",
-        "symfony/dom-crawler": "^2.4|^3.0|^4.0|^5.0|^6.0"
+        "symfony/property-access": "^5.0|^6.0",
+        "symfony/http-foundation": "^5.0|^6.0",
+        "symfony/dom-crawler": "^5.0|^6.0"
     },
 
     "require-dev": {
@@ -38,7 +38,7 @@
 
     "extra": {
         "branch-alias": {
-            "dev-master": "3.0.x-dev"
+            "dev-master": "4.0.x-dev"
         }
     }
 }
